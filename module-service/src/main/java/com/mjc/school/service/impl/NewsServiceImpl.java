@@ -48,7 +48,7 @@ public class NewsServiceImpl implements BaseService<NewsRequestDto, NewsResponse
     }
 
     @Override
-    public NewsResponseDto findById(Long id) {
+    public NewsResponseDto readById(Long id) {
         NewsModel news;
         try {
             news = newsRepository.readById(id);
@@ -59,7 +59,7 @@ public class NewsServiceImpl implements BaseService<NewsRequestDto, NewsResponse
     }
 
     @Override
-    public List<NewsResponseDto> findAll() {
+    public List<NewsResponseDto> readAll() {
         return newsMapper.newsListToDtoList(newsRepository.readAll());
     }
 

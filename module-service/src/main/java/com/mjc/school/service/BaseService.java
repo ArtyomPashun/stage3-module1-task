@@ -7,9 +7,9 @@ public interface BaseService<T, R> {
 
     R update (T t);
 
-    R findById (Long id);
+    R readById(Long id);
 
-    List<R> findAll ();
+    List<R> readAll();
 
     Boolean deleteById (Long id);
 }

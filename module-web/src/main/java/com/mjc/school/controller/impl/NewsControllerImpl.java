@@ -23,12 +23,12 @@ public class NewsControllerImpl implements BaseController<NewsRequestDto, NewsRe
 
     @Override
     public List<NewsResponseDto> readAll() {
-        return newsService.findAll();
+        return newsService.readAll();
     }
 
     @Override
     public NewsResponseDto readById(Long id) {
-        return newsService.findById(id);
+        return newsService.readById(id);
     }
 
     @Override
