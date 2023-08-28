@@ -2,12 +2,12 @@ package com.mjc.school.repository.impl;
 
 import com.mjc.school.repository.BaseRepository;
 import com.mjc.school.repository.DataSource;
-import com.mjc.school.repository.entity.News;
+import com.mjc.school.repository.model.NewsModel;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class NewsRepositoryImpl implements BaseRepository<News> {
+public class NewsRepositoryImpl implements BaseRepository<NewsModel> {
 
     private final DataSource dataSource;
 
@@ -16,19 +16,19 @@ public class NewsRepositoryImpl implements BaseRepository<News> {
     }
 
     @Override
-    public News readById(Long id) {
+    public NewsModel readById(Long id) {
         return dataSource.getNewsList().stream()
                 .filter(news -> news.getId().equals(id))
                 .findFirst().orElse(null);
     }
 
     @Override
-    public List<News> readAll() {
+    public List<NewsModel> readAll() {
         return dataSource.getNewsList();
     }
 
     @Override
-    public News create(News news) {
+    public NewsModel create(NewsModel news) {
         Long id = readAll().get(readAll().size() - 1).getId() + 1L;
         news.setId(id);
         news.setCreateDate(LocalDateTime.now());
@@ -38,8 +38,8 @@ public class NewsRepositoryImpl implements BaseRepository<News> {
     }
 
     @Override
-    public News update(News updatedNews) {
-        News news = readById(updatedNews.getId());
+    public NewsModel update(NewsModel updatedNews) {
+        NewsModel news = readById(updatedNews.getId());
         news.setTitle(updatedNews.getTitle());
         news.setContent(updatedNews.getContent());
         news.setLastUpdateDate(updatedNews.getLastUpdateDate());

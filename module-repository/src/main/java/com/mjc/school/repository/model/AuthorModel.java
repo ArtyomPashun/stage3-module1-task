@@ -1,4 +1,4 @@
-package com.mjc.school.repository.entity;
+package com.mjc.school.repository.model;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Author {
+public class AuthorModel {
 
     private Long id;
 
@@ -18,7 +18,7 @@ public class Author {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Author author = (Author) o;
+        AuthorModel author = (AuthorModel) o;
         return id.equals(author.id) && name.equals(author.name);
     }
 

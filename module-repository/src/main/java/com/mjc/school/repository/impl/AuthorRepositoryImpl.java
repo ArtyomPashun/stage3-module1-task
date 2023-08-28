@@ -2,11 +2,11 @@ package com.mjc.school.repository.impl;
 
 import com.mjc.school.repository.BaseRepository;
 import com.mjc.school.repository.DataSource;
-import com.mjc.school.repository.entity.Author;
+import com.mjc.school.repository.model.AuthorModel;
 
 import java.util.List;
 
-public class AuthorRepositoryImpl implements BaseRepository<Author> {
+public class AuthorRepositoryImpl implements BaseRepository<AuthorModel> {
 
     private final DataSource dataSource;
     private static final String UNSUPPORTED_MESSAGE = "Operation should not be implemented.";
@@ -17,22 +17,22 @@ public class AuthorRepositoryImpl implements BaseRepository<Author> {
 
 
     @Override
-    public Author readById(Long id) {
+    public AuthorModel readById(Long id) {
         throw new UnsupportedOperationException(UNSUPPORTED_MESSAGE);
     }
 
     @Override
-    public List<Author> readAll() {
+    public List<AuthorModel> readAll() {
         return dataSource.getAuthorList();
     }
 
     @Override
-    public Author create(Author author) {
+    public AuthorModel create(AuthorModel author) {
         throw new UnsupportedOperationException(UNSUPPORTED_MESSAGE);
     }
 
     @Override
-    public Author update(Author author) {
+    public AuthorModel update(AuthorModel author) {
         throw new UnsupportedOperationException(UNSUPPORTED_MESSAGE);
     }
 

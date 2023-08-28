@@ -1,7 +1,7 @@
 package com.mjc.school.repository;
 
-import com.mjc.school.repository.entity.Author;
-import com.mjc.school.repository.entity.News;
+import com.mjc.school.repository.model.AuthorModel;
+import com.mjc.school.repository.model.NewsModel;
 import com.mjc.school.repository.utils.TxtFileReader;
 import lombok.Getter;
 
@@ -21,10 +21,10 @@ public class DataSource {
     private static DataSource instance;
 
     @Getter
-    private final List<News> newsList;
+    private final List<NewsModel> newsList;
 
     @Getter
-    private final List<Author> authorList;
+    private final List<AuthorModel> authorList;
 
     @Getter
     private final TxtFileReader txtFileReader;
@@ -51,7 +51,7 @@ public class DataSource {
 
     private void initAuthors(List<String> authorsList) {
         for (int i = 0; i < MAX_RECORDS_AMOUNT; i++) {
-            authorList.add(new Author((long) i, authorsList.get(i)));
+            authorList.add(new AuthorModel((long) i, authorsList.get(i)));
         }
     }
 
@@ -65,7 +65,7 @@ public class DataSource {
             LocalDateTime createdAt = now.minusDays(30 + random.nextInt(30));
             LocalDateTime updatedAt = now.minusDays(random.nextInt(30));
 
-            News news = new News((long) i, title, content, createdAt, updatedAt, (long) i);
+            NewsModel news = new NewsModel((long) i, title, content, createdAt, updatedAt, (long) i);
             newsList.add(news);
         }
     }

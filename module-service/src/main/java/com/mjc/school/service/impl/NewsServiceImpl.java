@@ -1,7 +1,7 @@
 package com.mjc.school.service.impl;
 
 import com.mjc.school.repository.BaseRepository;
-import com.mjc.school.repository.entity.News;
+import com.mjc.school.repository.model.NewsModel;
 import com.mjc.school.repository.impl.NewsRepositoryImpl;
 import com.mjc.school.service.BaseService;
 import com.mjc.school.service.dto.NewsRequestDto;
@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
 
 public class NewsServiceImpl implements BaseService<NewsRequestDto, NewsResponseDto> {
 
-    private final BaseRepository<News> newsRepository;
+    private final BaseRepository<NewsModel> newsRepository;
     private final NewsMapper newsMapper;
     private final BaseValidator<NewsRequestDto> newsRequestDtoBaseValidator;
 
@@ -30,26 +30,26 @@ public class NewsServiceImpl implements BaseService<NewsRequestDto, NewsResponse
     @Override
     public NewsResponseDto create(NewsRequestDto newsRequestDto) {
         newsRequestDtoBaseValidator.validate(newsRequestDto);
-        News news = newsMapper.requestDtoToNews(newsRequestDto);
-        News savedNews = newsRepository.create(news);
+        NewsModel news = newsMapper.requestDtoToNews(newsRequestDto);
+        NewsModel savedNews = newsRepository.create(news);
         return newsMapper.newsToResponseDto(savedNews);
     }
 
     @Override
     public NewsResponseDto update(NewsRequestDto newsRequestDto) {
         newsRequestDtoBaseValidator.validate(newsRequestDto);
-        News news = getNewsById(newsRequestDto.id());
+        NewsModel news = getNewsById(newsRequestDto.id());
         news.setTitle(newsRequestDto.title());
         news.setContent(newsRequestDto.content());
         news.setAuthorId(newsRequestDto.authorId());
 
-        News savedNews = newsRepository.update(news);
+        NewsModel savedNews = newsRepository.update(news);
         return newsMapper.newsToResponseDto(savedNews);
     }
 
     @Override
     public NewsResponseDto findById(Long id) {
-        News news;
+        NewsModel news;
         try {
             news = newsRepository.readById(id);
         } catch (NoSuchElementException e) {
@@ -72,8 +72,8 @@ public class NewsServiceImpl implements BaseService<NewsRequestDto, NewsResponse
         }
     }
 
-    private News getNewsById(Long id) {
-        News news;
+    private NewsModel getNewsById(Long id) {
+        NewsModel news;
         try {
             news = newsRepository.readById(id);
         } catch (NoSuchElementException e) {

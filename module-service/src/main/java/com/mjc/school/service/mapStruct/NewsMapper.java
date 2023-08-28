@@ -1,7 +1,7 @@
 package com.mjc.school.service.mapStruct;
 
-import com.mjc.school.repository.entity.Author;
-import com.mjc.school.repository.entity.News;
+import com.mjc.school.repository.model.AuthorModel;
+import com.mjc.school.repository.model.NewsModel;
 import com.mjc.school.service.dto.AuthorResponseDto;
 import com.mjc.school.service.dto.NewsRequestDto;
 import com.mjc.school.service.dto.NewsResponseDto;
@@ -15,15 +15,15 @@ import java.util.List;
 @Mapper
 public interface NewsMapper {
 
-    NewsResponseDto newsToResponseDto(News news);
+    NewsResponseDto newsToResponseDto(NewsModel news);
 
-    List<NewsResponseDto> newsListToDtoList(List<News> news);
+    List<NewsResponseDto> newsListToDtoList(List<NewsModel> news);
 
-    List<AuthorResponseDto> authorListToDtoList(List<Author> authors);
+    List<AuthorResponseDto> authorListToDtoList(List<AuthorModel> authors);
 
     @Mappings({
             @Mapping(target = "createDate", ignore = true),
             @Mapping(target = "lastUpdateDate", ignore = true)
     })
-    News requestDtoToNews(NewsRequestDto request);
+    NewsModel requestDtoToNews(NewsRequestDto request);
 }
