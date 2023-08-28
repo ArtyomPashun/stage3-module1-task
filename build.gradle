@@ -19,13 +19,8 @@ subprojects {
 
     dependencies {
         testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+        testImplementation 'org.mockito:mockito-junit-jupiter:5.3.1'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-
-        compileOnly 'org.project-lombok:lombok:1.18.28'
-        annotationProcessor 'org.project-lombok:lombok:1.18.28'
-
-        testCompileOnly 'org.project-lombok:lombok:1.18.28'
-        testAnnotationProcessor 'org.project-lombok:lombok:1.18.28'
     }
 
     test {

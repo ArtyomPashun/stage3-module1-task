@@ -12,12 +12,6 @@ repositories {
 dependencies {
     implementation project(':module-repository')
 
-    compileOnly 'org.project-lombok:lombok:1.18.28'
-    annotationProcessor 'org.project-lombok:lombok:1.18.28'
-
-    testCompileOnly 'org.project-lombok:lombok:1.18.28'
-    testAnnotationProcessor 'org.project-lombok:lombok:1.18.28'
-
     implementation 'org.mapstruct:mapstruct:' + mapstructVersion
     annotationProcessor 'org.mapstruct:mapstruct-processor:' + mapstructVersion
     testAnnotationProcessor 'org.mapstruct:mapstruct-processor:' + mapstructVersion
