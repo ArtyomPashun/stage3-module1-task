@@ -1,13 +1,13 @@
 package com.mjc.school.service.validation.impl;
 
-import com.mjc.school.service.dto.NewsRequestDto;
+import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.exception.ValidationException;
 import com.mjc.school.service.validation.BaseValidator;
 
-public class NewsValidatorImpl implements BaseValidator<NewsRequestDto> {
+public class NewsValidatorImpl implements BaseValidator<NewsDtoRequest> {
 
     @Override
-    public void validate(NewsRequestDto newsRequestDto) {
+    public void validate(NewsDtoRequest newsRequestDto) {
         String title = newsRequestDto.title();
         String content = newsRequestDto.content();
         if (title != null) {

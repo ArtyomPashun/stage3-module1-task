@@ -4,8 +4,8 @@ import com.mjc.school.repository.BaseRepository;
 import com.mjc.school.repository.model.NewsModel;
 import com.mjc.school.repository.impl.NewsRepositoryImpl;
 import com.mjc.school.service.BaseService;
-import com.mjc.school.service.dto.NewsRequestDto;
-import com.mjc.school.service.dto.NewsResponseDto;
+import com.mjc.school.service.dto.NewsDtoRequest;
+import com.mjc.school.service.dto.NewsDtoResponse;
 import com.mjc.school.service.exception.EntityNotFoundException;
 import com.mjc.school.service.mapStruct.NewsMapper;
 import com.mjc.school.service.validation.BaseValidator;
@@ -15,11 +15,11 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class NewsServiceImpl implements BaseService<NewsRequestDto, NewsResponseDto> {
+public class NewsServiceImpl implements BaseService<NewsDtoRequest, NewsDtoResponse> {
 
     private final BaseRepository<NewsModel> newsRepository;
     private final NewsMapper newsMapper;
-    private final BaseValidator<NewsRequestDto> newsRequestDtoBaseValidator;
+    private final BaseValidator<NewsDtoRequest> newsRequestDtoBaseValidator;
 
     public NewsServiceImpl() {
         this.newsRepository = new NewsRepositoryImpl();
@@ -28,7 +28,7 @@ public class NewsServiceImpl implements BaseService<NewsRequestDto, NewsResponse
     }
 
     @Override
-    public NewsResponseDto create(NewsRequestDto newsRequestDto) {
+    public NewsDtoResponse create(NewsDtoRequest newsRequestDto) {
         newsRequestDtoBaseValidator.validate(newsRequestDto);
         NewsModel news = newsMapper.requestDtoToNews(newsRequestDto);
         NewsModel savedNews = newsRepository.create(news);
@@ -36,7 +36,7 @@ public class NewsServiceImpl implements BaseService<NewsRequestDto, NewsResponse
     }
 
     @Override
-    public NewsResponseDto update(NewsRequestDto newsRequestDto) {
+    public NewsDtoResponse update(NewsDtoRequest newsRequestDto) {
         newsRequestDtoBaseValidator.validate(newsRequestDto);
         NewsModel news = getNewsById(newsRequestDto.id());
         news.setTitle(newsRequestDto.title());
@@ -48,7 +48,7 @@ public class NewsServiceImpl implements BaseService<NewsRequestDto, NewsResponse
     }
 
     @Override
-    public NewsResponseDto readById(Long id) {
+    public NewsDtoResponse readById(Long id) {
         NewsModel news;
         try {
             news = newsRepository.readById(id);
@@ -59,7 +59,7 @@ public class NewsServiceImpl implements BaseService<NewsRequestDto, NewsResponse
     }
 
     @Override
-    public List<NewsResponseDto> readAll() {
+    public List<NewsDtoResponse> readAll() {
         return newsMapper.newsListToDtoList(newsRepository.readAll());
     }
 

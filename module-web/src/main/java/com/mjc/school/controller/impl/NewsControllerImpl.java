@@ -2,37 +2,37 @@ package com.mjc.school.controller.impl;
 
 import com.mjc.school.controller.BaseController;
 import com.mjc.school.service.BaseService;
-import com.mjc.school.service.dto.NewsRequestDto;
-import com.mjc.school.service.dto.NewsResponseDto;
+import com.mjc.school.service.dto.NewsDtoRequest;
+import com.mjc.school.service.dto.NewsDtoResponse;
 import com.mjc.school.service.impl.NewsServiceImpl;
 
 import java.util.List;
 
-public class NewsControllerImpl implements BaseController<NewsRequestDto, NewsResponseDto> {
+public class NewsControllerImpl implements BaseController<NewsDtoRequest, NewsDtoResponse> {
 
-    private final BaseService<NewsRequestDto, NewsResponseDto> newsService;
+    private final BaseService<NewsDtoRequest, NewsDtoResponse> newsService;
 
     public NewsControllerImpl() {
         this.newsService = new NewsServiceImpl();
     }
 
     @Override
-    public NewsResponseDto create(NewsRequestDto newsRequestDto) {
+    public NewsDtoResponse create(NewsDtoRequest newsRequestDto) {
         return newsService.create(newsRequestDto);
     }
 
     @Override
-    public List<NewsResponseDto> readAll() {
+    public List<NewsDtoResponse> readAll() {
         return newsService.readAll();
     }
 
     @Override
-    public NewsResponseDto readById(Long id) {
+    public NewsDtoResponse readById(Long id) {
         return newsService.readById(id);
     }
 
     @Override
-    public NewsResponseDto update(NewsRequestDto newsRequestDto) {
+    public NewsDtoResponse update(NewsDtoRequest newsRequestDto) {
         return newsService.update(newsRequestDto);
     }
 
